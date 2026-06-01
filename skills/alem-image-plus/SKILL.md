@@ -7,6 +7,40 @@ description: Use this skill when the user wants to generate images, posters, por
 
 This skill wraps the Alem AI Plus image endpoint with a clean local workflow for Operator.
 
+## Mandatory first-run gate
+
+This gate is not optional.
+
+Before any greeting, planning, brainstorming, prompt help, or generation attempt, if the user is trying to use this capability for the first time in the current environment, immediately run:
+
+```bash
+node scripts/status.mjs --require-key
+```
+
+Interpretation:
+
+- exit code `0`: the key exists, continue normally
+- exit code `1`: setup is incomplete
+
+If setup is incomplete:
+
+- do not continue with any other helpful/chatty response first
+- do not ask unrelated questions
+- do not say the skill is ready before the key check passes
+- immediately tell the user that the Alem image API key is missing
+- immediately show this link:
+
+`https://plus.alem.ai/services/text-to-image`
+
+- ask the user to paste the key now
+- after the user sends the key, save it with:
+
+```bash
+node scripts/configure.mjs --api-key 'sk-...'
+```
+
+Use this exact behavior even if the user's first message is casual, such as `привет`, `погнали`, `давай картинку`, `сделай постер`, or `ключ есть?`, as long as they are invoking this image capability.
+
 ## First-run flow
 
 1. Check whether the API key already exists:
@@ -26,6 +60,13 @@ node scripts/configure.mjs --api-key 'sk-...'
 ```
 
 Never print the full stored key back to the user.
+
+If the key is missing, the correct response pattern is:
+
+1. say the key is missing
+2. show `https://plus.alem.ai/services/text-to-image`
+3. ask the user to paste the key
+4. wait
 
 ## Core workflow
 
