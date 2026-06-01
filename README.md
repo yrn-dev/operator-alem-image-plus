@@ -16,6 +16,24 @@ operator install https://github.com/yrn-dev/operator-alem-image-plus
 - generation script for the Alem image endpoint
 - Qwen-Image-2512 prompting guide
 
+## Sample outputs
+
+### Portrait
+
+![Portrait woman](./samples/portrait-woman.png)
+
+### Product shot
+
+![Raspberry Pi product](./samples/raspberry-pi-product.png)
+
+### Atmospheric scene
+
+![Ancient Japan street](./samples/ancient-japan.png)
+
+### Lifestyle scene
+
+![Man eating sandwich in cafe](./samples/man-eating-sandwich-cafe.png)
+
 ## Notes
 
 - Users must provide their own Alem AI Plus API key
