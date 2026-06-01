@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.log
+generated/
+*.png
+*.jpg
+*.jpeg
+*.webp
+node_modules/
